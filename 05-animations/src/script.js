@@ -29,16 +29,19 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 
-let time = Date.now();
+// let time = Date.now();
+const clock = new THREE.Clock();
 
 function tick() {
-  const currentTime = Date.now();
-  const deltaTime = currentTime - time;
-  time = currentTime;
+  //   const currentTime = Date.now();
+  //   const deltaTime = currentTime - time;
+  //   time = currentTime;
 
-  console.log(deltaTime);
+  //   console.log(deltaTime);
+  const elapsedTime = clock.getElapsedTime();
 
-  mesh.rotation.x += 0.001 * deltaTime;
+  mesh.position.x = Math.cos(elapsedTime);
+  mesh.position.y = Math.sin(elapsedTime);
   //   mesh.rotation.y += 0.01;
   //   mesh.rotation.z += 0.01;
   renderer.render(scene, camera);
