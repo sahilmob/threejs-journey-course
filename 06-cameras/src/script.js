@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const cursor = {
   x: 0,
@@ -39,6 +40,8 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
 // const aspectRation = sizes.width / sizes.height;
 // const camera = new THREE.OrthographicCamera(
 //   -1 * aspectRation,
@@ -69,15 +72,16 @@ const tick = () => {
 
   // Update objects
   //   mesh.rotation.y = elapsedTime;
-  camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
-  //   clientY is positive when the mouse goes downwards,
-  //  however, in threejs the y-axis is positive in the
-  //  opposite direction
-  camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
-  camera.position.y = cursor.y * 5;
-  camera.lookAt(mesh.position);
+  //   camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
+  //   //   clientY is positive when the mouse goes downwards,
+  //   //  however, in threejs the y-axis is positive in the
+  //   //  opposite direction
+  //   camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
+  //   camera.position.y = cursor.y * 5;
+  //   camera.lookAt(mesh.position);
 
   // Render
+  controls.update();
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
