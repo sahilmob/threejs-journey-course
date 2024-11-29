@@ -69,11 +69,13 @@ const tick = () => {
 
   // Update objects
   //   mesh.rotation.y = elapsedTime;
-  camera.position.x = cursor.x * 3;
+  camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
   //   clientY is positive when the mouse goes downwards,
   //  however, in threejs the y-axis is positive in the
   //  opposite direction
-  camera.position.y = cursor.y * 3;
+  camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
+  camera.position.y = cursor.y * 5;
+  camera.lookAt(mesh.position);
 
   // Render
   renderer.render(scene, camera);
