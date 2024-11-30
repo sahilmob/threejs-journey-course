@@ -28,9 +28,12 @@ const material = new THREE.MeshBasicMaterial({
 });
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
-gui.add(mesh.position, "y").min(-3).max(3).step(0.01).name("elevation");
-gui.add(mesh, "visible");
-gui.add(material, "wireframe");
+
+const cubeTweaks = gui.addFolder("Awesome cube");
+
+cubeTweaks.add(mesh.position, "y").min(-3).max(3).step(0.01).name("elevation");
+cubeTweaks.add(mesh, "visible");
+cubeTweaks.add(material, "wireframe");
 gui.addColor(debugObject, "color").onChange(() => {
   material.color.set(debugObject.color);
 });
