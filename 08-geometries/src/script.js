@@ -11,10 +11,20 @@ const canvas = document.querySelector("canvas.webgl");
 const scene = new THREE.Scene();
 
 // Object
-const positions = new Float32Array([0, 0, 0, 0, 1, 0, 1, 0, 0]);
+const geometry = new THREE.BufferGeometry();
+const count = 50;
+
+// we want to create 50 faces,
+// ech on consists of 3 vertices,
+// each vertex consists of (x,y,x)
+const positions = new Float32Array(count * 3 * 3);
+
+for (let i = 0; i < count * 3 * 3; i++) {
+  // -0.5 to center the geometry
+  positions[i] = Math.random() - 0.5;
+}
 
 const positionsAttribute = new THREE.BufferAttribute(positions, 3);
-const geometry = new THREE.BufferGeometry();
 geometry.setAttribute("position", positionsAttribute);
 
 // positions[0] = 0
