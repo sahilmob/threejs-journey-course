@@ -3,7 +3,13 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
 import GUI from "lil-gui";
 
-const gui = new GUI();
+const gui = new GUI({
+  width: 300,
+  title: "Nice debug UI",
+  closeFolders: true,
+});
+
+gui.close();
 const debugObject = {};
 
 /**
