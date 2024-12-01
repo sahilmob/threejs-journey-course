@@ -51,7 +51,8 @@ colorTexture.colorSpace = THREE.SRGBColorSpace;
 // colorTexture.center.y = 0.5;
 // colorTexture.rotation = Math.PI * 0.25;
 
-// colorTexture.minFilter = THREE.NearestFilter;
+colorTexture.generateMipmaps = false;
+colorTexture.minFilter = THREE.NearestFilter;
 colorTexture.magFilter = THREE.NearestFilter;
 
 /**
