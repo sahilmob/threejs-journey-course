@@ -18,7 +18,7 @@ loadingManager.onLoad = () => {};
 
 const textureLoader = new THREE.TextureLoader(loadingManager);
 const colorTexture = textureLoader.load(
-  "/textures/checkerboard-1024x1024.png"
+  "/textures/minecraft.png"
   //   () => {
   //     // load
   //   },
@@ -51,7 +51,8 @@ colorTexture.colorSpace = THREE.SRGBColorSpace;
 // colorTexture.center.y = 0.5;
 // colorTexture.rotation = Math.PI * 0.25;
 
-colorTexture.minFilter = THREE.NearestFilter;
+// colorTexture.minFilter = THREE.NearestFilter;
+colorTexture.magFilter = THREE.NearestFilter;
 
 /**
  * Base
