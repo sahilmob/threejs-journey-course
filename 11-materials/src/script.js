@@ -50,9 +50,14 @@ const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
 
 // const material = new THREE.MeshLambertMaterial();
 
-const material = new THREE.MeshPhongMaterial();
-material.shininess = 100;
-material.specular = new THREE.Color(0x1188ff);
+// const material = new THREE.MeshPhongMaterial();
+// material.shininess = 100;
+// material.specular = new THREE.Color(0x1188ff);
+
+const material = new THREE.MeshToonMaterial();
+gradientTexture.magFilter = THREE.NearestFilter;
+gradientTexture.generateMipmaps = false;
+material.gradientMap = gradientTexture;
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
