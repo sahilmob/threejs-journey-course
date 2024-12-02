@@ -1,5 +1,9 @@
+import GUI from "lil-gui";
 import * as THREE from "three";
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+const gui = new GUI();
 
 /**
  * Base
@@ -54,10 +58,17 @@ const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
 // material.shininess = 100;
 // material.specular = new THREE.Color(0x1188ff);
 
-const material = new THREE.MeshToonMaterial();
-gradientTexture.magFilter = THREE.NearestFilter;
-gradientTexture.generateMipmaps = false;
-material.gradientMap = gradientTexture;
+// const material = new THREE.MeshToonMaterial();
+// gradientTexture.magFilter = THREE.NearestFilter;
+// gradientTexture.generateMipmaps = false;
+// material.gradientMap = gradientTexture;
+
+const material = new THREE.MeshStandardMaterial();
+material.metalness = 0.7;
+material.roughness = 0.2;
+
+gui.add(material, "roughness").min(0).max(1).step(0.0001);
+gui.add(material, "metalness").min(0).max(1).step(0.0001);
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
@@ -79,6 +90,13 @@ pointLight.position.y = 3;
 pointLight.position.z = 4;
 scene.add(ambientLight);
 scene.add(pointLight);
+
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load("./textures/environmentMap/2k.hdr", (envMap) => {
+  envMap.mapping = THREE.EquirectangularReflectionMapping;
+  scene.background = envMap;
+  scene.environment = envMap;
+});
 
 scene.add(sphere, plane, torus);
 
