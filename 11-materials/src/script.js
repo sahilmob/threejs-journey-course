@@ -43,8 +43,10 @@ const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
 // const material = new THREE.MeshNormalMaterial();
 // material.flatShading = true;
 
-const material = new THREE.MeshMatcapMaterial();
-material.matcap = matcapTexture;
+// const material = new THREE.MeshMatcapMaterial();
+// material.matcap = matcapTexture;
+
+// const material = new THREE.MeshDepthMaterial();
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
