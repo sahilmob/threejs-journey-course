@@ -64,16 +64,24 @@ const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
 // material.gradientMap = gradientTexture;
 
 const material = new THREE.MeshStandardMaterial();
-material.metalness = 0.7;
-material.roughness = 0.2;
+material.metalness = 1;
+material.roughness = 1;
+material.map = doorColorTexture;
+material.aoMap = doorAmbientOcclusionTexture;
+material.aoMapIntensity = 1;
+material.displacementMap = doorHeightTexture;
+material.displacementScale = 0.1;
+material.roughnessMap = doorRoughnessTexture;
+material.metalnessMap = doorMetalnessTexture;
+material.normalMap = doorNormalTexture;
 
 gui.add(material, "roughness").min(0).max(1).step(0.0001);
 gui.add(material, "metalness").min(0).max(1).step(0.0001);
 
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 64, 64), material);
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 100, 100), material);
 const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(0.3, 0.2, 16, 32),
+  new THREE.TorusGeometry(0.3, 0.2, 64, 64),
   material
 );
 
@@ -83,13 +91,13 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace;
 sphere.position.x = -1.5;
 torus.position.x = 1.5;
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-const pointLight = new THREE.PointLight(0xffffff, 30);
-pointLight.position.x = 2;
-pointLight.position.y = 3;
-pointLight.position.z = 4;
-scene.add(ambientLight);
-scene.add(pointLight);
+// const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+// const pointLight = new THREE.PointLight(0xffffff, 30);
+// pointLight.position.x = 2;
+// pointLight.position.y = 3;
+// pointLight.position.z = 4;
+// scene.add(ambientLight);
+// scene.add(pointLight);
 
 const rgbeLoader = new RGBELoader();
 rgbeLoader.load("./textures/environmentMap/2k.hdr", (envMap) => {
@@ -158,12 +166,12 @@ const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
-  sphere.rotation.y = 0.1 * elapsedTime;
-  plane.rotation.y = 0.1 * elapsedTime;
-  torus.rotation.y = 0.1 * elapsedTime;
-  sphere.rotation.x = -0.15 * elapsedTime;
-  plane.rotation.x = -0.15 * elapsedTime;
-  torus.rotation.x = -0.15 * elapsedTime;
+  //   sphere.rotation.y = 0.1 * elapsedTime;
+  //   plane.rotation.y = 0.1 * elapsedTime;
+  //   torus.rotation.y = 0.1 * elapsedTime;
+  //   sphere.rotation.x = -0.15 * elapsedTime;
+  //   plane.rotation.x = -0.15 * elapsedTime;
+  //   torus.rotation.x = -0.15 * elapsedTime;
 
   // Update controls
   controls.update();
