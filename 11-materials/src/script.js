@@ -40,6 +40,9 @@ const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
 // material.alphaMap = doorAlphaTexture;
 // material.side = THREE.DoubleSide;
 
+// const material = new THREE.MeshNormalMaterial();
+// material.flatShading = true;
+
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
 const torus = new THREE.Mesh(
