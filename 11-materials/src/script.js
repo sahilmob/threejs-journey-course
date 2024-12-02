@@ -48,6 +48,8 @@ const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
 
 // const material = new THREE.MeshDepthMaterial();
 
+const material = new THREE.MeshLambertMaterial();
+
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
 const torus = new THREE.Mesh(
@@ -60,6 +62,14 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace;
 
 sphere.position.x = -1.5;
 torus.position.x = 1.5;
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+const pointLight = new THREE.PointLight(0xffffff, 30);
+pointLight.position.x = 2;
+pointLight.position.y = 3;
+pointLight.position.z = 4;
+scene.add(ambientLight);
+scene.add(pointLight);
 
 scene.add(sphere, plane, torus);
 
